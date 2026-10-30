@@ -55,7 +55,7 @@ public:
     CLASS_FIELD(uintptr_t**, mVfTable, 0x0);
     CLASS_FIELD(std::string, mTileName, OffsetProvider::BlockLegacy_mTileName);
     CLASS_FIELD(std::string, mName, OffsetProvider::BlockLegacy_mName); 
-    CLASS_FIELD(Material*, mMaterial, OffsetProvider::BlockLegacy_mMaterial);
+    CLASS_FIELD(Material, mMaterial, OffsetProvider::BlockLegacy_mMaterial);
     CLASS_FIELD(__BlockFlags, _BlockFlags, OffsetProvider::BlockLegacy_BlockFlags);
 
     uint16_t getBlockId();

@@ -252,7 +252,7 @@ void TestModule::onPacketOutEvent(PacketOutEvent& event)
 			{
 				auto block = ClientInstance::get()->getBlockSource()->getBlock(transac->mBlockPos);
 				//ChatUtils::displayClientMessage("BlockName:" + block->mLegacy->mTileName);
-				ChatUtils::displayClientMessage("IsSolid:" + std::to_string(block->mLegacy->mMaterial->mIsSolid));
+				ChatUtils::displayClientMessage("IsSolid:" + std::to_string(block->mLegacy->mMaterial.mIsSolid));
 			}
 		}
 	}
@@ -435,15 +435,10 @@ void TestModule::onRenderEvent(RenderEvent& event)
 
 					std::unordered_map<EntityId, std::map<std::uint32_t, void*>> unsortedMap = player->mContext.mRegistry->get_all_entity_components();
 
-					for (auto& [ent, typehashes] : unsortedMap)
-					{
-						bool isActor = player->mContext.mRegistry->has_flag<ActorOwnerComponent>(ent,0x85B93800u);
-						if (isActor && lpid != ent)
-						{
-							unsortedMap.erase(ent);
-							continue;
-						}
-					}
+					std::erase_if(unsortedMap, [&](const auto& kv) {
+						const EntityId ent = kv.first;
+						return ent != lpid && player->mContext.mRegistry->has_flag<ActorOwnerComponent>(ent);
+						});
 
 					std::unordered_map<EntityId, std::map<std::uint32_t, void*>> flagMap = {};
 
@@ -642,16 +637,14 @@ void TestModule::onRenderEvent(RenderEvent& event)
 					displayCopyableAddress("BlockLegacy", leg);
 					ImGui::Text("BlockName: %s", leg->mName.c_str());
 
-					if (auto mat = leg->mMaterial)
-					{
-						displayCopyableAddress("Material", mat);
-						ImGui::Text("Material Type: %d", mat->mType);
-						//ImGui::Text("Material Flammable: %s", mat->mIsFlammable ? "true" : "false"); removed
-						ImGui::Text("Material Never Buildable: %s", mat->mIsNeverBuildable ? "true" : "false");
-						ImGui::Text("Material Liquid: %s", mat->mIsLiquid ? "true" : "false");
-						ImGui::Text("Material Blocking Motion: %s", mat->mIsBlockingMotion ? "true" : "false");
-						ImGui::Text("Material Super Hot: %s", mat->mIsSuperHot ? "true" : "false");
-					}
+					auto mat = leg->mMaterial;
+					displayCopyableAddress("Material", &mat);
+					ImGui::Text("Material Type: %d", mat.mType);
+					//ImGui::Text("Material Flammable: %s", mat->mIsFlammable ? "true" : "false"); removed
+					ImGui::Text("Material Never Buildable: %s", mat.mIsNeverBuildable ? "true" : "false");
+					ImGui::Text("Material Liquid: %s", mat.mIsLiquid ? "true" : "false");
+					ImGui::Text("Material Blocking Motion: %s", mat.mIsBlockingMotion ? "true" : "false");
+					ImGui::Text("Material Super Hot: %s", mat.mIsSuperHot ? "true" : "false");
 				}
 			}
 

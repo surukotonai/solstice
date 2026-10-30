@@ -146,16 +146,15 @@ public:
 	DEFINE_FIELD(BlockSource_setBlock, 32); // 1.21.131
 	DEFINE_FIELD(BlockSource_mBuildHeight, (uint8_t)0x38); // 1.21.131
 
-	DEFINE_FIELD(bgfx_d3d12_RendererContextD3D12_m_commandQueue, 0xcc9260)
-	DEFINE_FIELD(bgfx_context_m_renderCtx, 0x1ee32d0);
+	DEFINE_FIELD(bgfx_d3d12_RendererContextD3D12_m_commandQueue, 0xCC9268)
+	DEFINE_FIELD(bgfx_context_m_renderCtx, 0x1EBF2D0); // scan "Renderer not initialized, but InitState is in End!" have a fun :joy:
 
-	DEFINE_FIELD(MinecraftGame_mClientInstances, 0x970); // 1.26.51 
-	DEFINE_FIELD(MinecraftGame_mMouseGrabbed, 0x1E8); // +8? need debug
-	DEFINE_FIELD(MinecraftGame_mXuid, 0x240); // 1.26.51
-	DEFINE_FIELD(MinecraftGame_mProfanityContext, 0x1C8);
-	DEFINE_FIELD(MinecraftSim_mGameSession, 0xc8); 
-	DEFINE_FIELD(MinecraftSim_mGameSim, 0xe0);
-	DEFINE_FIELD(MinecraftSim_mRenderSim, 0xe8);
+	DEFINE_FIELD(MinecraftGame_mMouseGrabbed, 0x1F8);
+	DEFINE_FIELD(MinecraftGame_mXuid, 0x270); // 1.26.51
+	DEFINE_FIELD(MinecraftGame_mProfanityContext, 0x1D8);
+	DEFINE_FIELD(MinecraftSim_mGameSession, 0xd0);
+	DEFINE_FIELD(MinecraftSim_mGameSim, 0xe8);
+	DEFINE_FIELD(MinecraftSim_mRenderSim, 0xf0);
 
 	DEFINE_FIELD(ContainerManagerModel_getSlot, (uint8_t)9); // 1.21.131
 	DEFINE_FIELD(ContainerManagerModel_getContainerType, (uint8_t)3); // 1.21.131
@@ -163,22 +162,20 @@ public:
 	DEFINE_FIELD(GameSession_mEventCallback, (uint8_t)0x50);
 	DEFINE_FIELD(UIProfanityContext_mEnabled, 0x1A); // 1.21.131 //very unknown i dont want to get uwp :joy:
 
-	DEFINE_FIELD(ClientInstance_getLocalPlayer, 31); // 1.21.131
-	DEFINE_FIELD(ClientInstance_getBlockSource, 30); // 1.21.131
-	DEFINE_FIELD(ClientInstance_setDisableInput, 309);
-	DEFINE_FIELD(ClientInstance_getOptions, 174); // 1.26.51
-	DEFINE_FIELD(ClientInstance_grabMouse, 310); // 1.26.0
-	DEFINE_FIELD(ClientInstance_releaseMouse, 311); // 1.26.0
-	DEFINE_FIELD(ClientInstance_getScreenName, 246); // 1.26.0
-	DEFINE_FIELD(ClientInstance_playUi, 320); // 1.26.0
-	DEFINE_FIELD(ClientInstance_mMinecraftSim, 0x1b0); 
-	DEFINE_FIELD(ClientInstance_getLevelRenderer, 187);
-	DEFINE_FIELD(ClientInstance_getInputHandler, 303);
-	DEFINE_FIELD(ClientInstance_mPacketSender, 0x1D0);
-	DEFINE_FIELD(ClientInstance_mGuiData, 0x650);
-	DEFINE_FIELD(ClientInstance_mViewMatrix, 0x420); // 1.21.131
-	DEFINE_FIELD(ClientInstance_mFovX, 0x740); // 1.21.80
-	DEFINE_FIELD(ClientInstance_mFovY, 0x754); // 1.21.80
+	DEFINE_FIELD(ClientInstance_getLocalPlayer, 30);
+	DEFINE_FIELD(ClientInstance_getBlockSource, 29);
+	DEFINE_FIELD(ClientInstance_setDisableInput, 305);
+	DEFINE_FIELD(ClientInstance_grabMouse, 306);
+	DEFINE_FIELD(ClientInstance_releaseMouse, 307);
+	DEFINE_FIELD(ClientInstance_getOptions, 172);
+	DEFINE_FIELD(ClientInstance_getScreenName, 243);
+	DEFINE_FIELD(ClientInstance_playUi, 316);
+	DEFINE_FIELD(ClientInstance_getLevelRenderer, 185);
+	DEFINE_FIELD(ClientInstance_getInputHandler, 299);
+	DEFINE_FIELD(ClientInstance_mPacketSender, 0x1F0);
+	DEFINE_FIELD(ClientInstance_mGuiData, 0x668);
+	DEFINE_FIELD(ClientInstance_mMinecraftSim, 0x1D0);
+	DEFINE_FIELD(ClientInstance_mViewMatrix, 0x438);
 
 	DEFINE_FIELD(ClientInputMappingFactory_mKeyboardRemappingLayout, 0x110);
 	DEFINE_FIELD(Level_getPlayerList, 319);
@@ -187,27 +184,26 @@ public:
 	DEFINE_FIELD(Level_mHitResult, 0x1e0);
 	DEFINE_FIELD(Level_mLevelData, 0x80);
 	DEFINE_FIELD(LevelData_mTick, 0x328);
-	DEFINE_FIELD(LevelChunk_mSubChunks, 0x140);
+	DEFINE_FIELD(LevelChunk_mSubChunks, 0x1c8);
 	DEFINE_FIELD(Actor_baseTick, 25); 
-	DEFINE_FIELD(Actor_mEntityIdentifier, 0x240);
-	DEFINE_FIELD(Actor_mLocalName, 0xbc0);
-	DEFINE_FIELD(Actor_mSupplies, 0x5b8);
-	DEFINE_FIELD(Actor_mLevel, 0x1D8);
-	//DEFINE_FIELD(Actor_mHurtTimeComponent, 0x428);//very unknown may be removed
-	DEFINE_FIELD(Actor_mSwinging, 0x434);
+	DEFINE_FIELD(Actor_mLevel, 0x200);	//ctor@0x146D9D790
+	DEFINE_FIELD(Actor_mEntityIdentifier, 0x260);
 	DEFINE_FIELD(Actor_mSwingProgress, 0x410);
-	DEFINE_FIELD(Actor_mContainerManagerModel, 0x5A0);
-	DEFINE_FIELD(Actor_mSerializedSkin, 0xab0);
-	DEFINE_FIELD(Actor_mDestroying, 0xb22);
-	DEFINE_FIELD(Actor_mGameMode, 0xaa0);
+	DEFINE_FIELD(Actor_mSwinging, 0x434);
+	DEFINE_FIELD(Actor_mContainerManagerModel, 0x5c8);
+	DEFINE_FIELD(Actor_mSupplies, 0x5e0);
+	DEFINE_FIELD(Actor_mGameMode, 0xac8);
+	DEFINE_FIELD(Actor_mSerializedSkin, 0xad8);
+	DEFINE_FIELD(Actor_mLocalName, 0xbe8);
+	DEFINE_FIELD(Actor_mDestroying, 0xb4a);
 	DEFINE_FIELD(Actor_swing, 109);
 	DEFINE_FIELD(GameMode_buildBlock, 6); 
 	DEFINE_FIELD(PlayerInventory_mContainer, 0xb8);
 
-	DEFINE_FIELD(LevelRendererPlayer_mFovX, 0xF58); 
-	DEFINE_FIELD(LevelRendererPlayer_mFovY, 0xF6C);
-	DEFINE_FIELD(LevelRendererPlayer_mCameraPos, 0x9CC);
-	DEFINE_FIELD(LevelRenderer_mRendererPlayer, 0x468);
+	DEFINE_FIELD(LevelRendererPlayer_mFovX, 0xF50); 
+	DEFINE_FIELD(LevelRendererPlayer_mFovY, 0xF64);
+	DEFINE_FIELD(LevelRendererPlayer_mCameraPos, 0x9C4);
+	DEFINE_FIELD(LevelRenderer_mRendererPlayer, 0x480);
 
 	static void initialize();
 	static void deinitialize();

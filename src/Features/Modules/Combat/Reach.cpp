@@ -12,11 +12,10 @@ static uintptr_t func = 0x0;
 void Reach::onInit() {
     func = SigManager::Reach;
 
-    /*
     uintptr_t addr2 = SigManager::BlockReach;
     addr2 += 4;
-    int offset2 = *reinterpret_cast<int*>(addr2);
-    mBlockReachPtr = reinterpret_cast<float*>(addr2 + offset2 + 4);*/
+    int offset2 = *(int*)addr2;
+    mBlockReachPtr = (float*)(addr2 + offset2 + 4);
 }
 
 void Reach::onEnable() {
@@ -35,11 +34,11 @@ void Reach::onEnable() {
     *mCombatPtr = 3.f;
 
     MemUtils::ReadBytes((void*)func, mOriginalData, sizeof(mOriginalData));
-    static auto mov = func + 9;
+    static auto mov = func + 10;
 
-    auto cr = (int32_t)((uintptr_t)mCombatPtr - (func + 7));
+    auto cr = (int32_t)((uintptr_t)mCombatPtr - (func + 8));
     auto mr = (int32_t)((uintptr_t)mCombatPtr - (mov + 8));
-    MemUtils::writeBytes((uintptr_t)func + 3, &cr, sizeof(int32_t));
+    MemUtils::writeBytes((uintptr_t)func + 4, &cr, sizeof(int32_t));
     MemUtils::writeBytes((uintptr_t)mov + 4, &mr, sizeof(int32_t)); // more better :joy:
 
     /*
@@ -74,5 +73,5 @@ void Reach::onBaseTickEvent(class BaseTickEvent &event) {
     if (mCombatPtr) {
         *mCombatPtr = mCombatReach.mValue;
     }
-    //MemUtils::Write((uintptr_t) mBlockReachPtr, mBlockReach.mValue);
+    MemUtils::Write((uintptr_t) mBlockReachPtr, mBlockReach.mValue);
 }

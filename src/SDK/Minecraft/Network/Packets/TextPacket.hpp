@@ -22,7 +22,7 @@ enum class TextPacketType : unsigned char {
     TextObjectWhisper = 0x9,
     TextObject = 0xA,
     TextObjectAnnouncement = 0xB,
-    null = -1
+    null = 255
 };
 
 

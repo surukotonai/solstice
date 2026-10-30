@@ -4,7 +4,7 @@
 
 #include "NoRender.hpp"
 
-std::vector<unsigned char> gRetOvrPatch = { 0xE9, 0xC2, 0x00, 0x00, 0x00, 0x90 };
+std::vector<unsigned char> gRetOvrPatch = { 0xE9, 0xC8, 0x00, 0x00, 0x00, 0x90 };
 DEFINE_PATCH_FUNC(NoRender::patchOverlay, SigManager::Unknown_renderBlockOverlay, gRetOvrPatch);
 
 void NoRender::onEnable()

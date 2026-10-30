@@ -47,9 +47,9 @@ public:
         };
     }
 
-    static inline unsigned char mOriginalData[8];
+    static inline unsigned char mOriginalData[9];
     static inline unsigned char mPatchBytes2[] = {
-    0x8B,0x15,0,0,0,0,0x90,0x90 // vtable call-> mov edx , qword + nop
+    0x8B,0x15,0,0,0,0,0x90,0x90,0x90 // vtable call-> mov edx , qword + nop
     };
 
     static inline unsigned char mOriginalData3[10];

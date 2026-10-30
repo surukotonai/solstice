@@ -233,7 +233,6 @@ JumpControlComponent* Actor::getJumpControlComponent()
 	return nullptr; // useless now , localplayer doesnt it now :joy: 
 }
 
-
 MobHurtTimeComponent* Actor::getMobHurtTimeComponent()
 {
 	return mContext.try_get<MobHurtTimeComponent>();
@@ -256,12 +255,16 @@ Level* Actor::getLevel()
 
 
 
-skinptr* Actor::getSkin() // only work 1.21.92 -100
+SerializedSkinImpl* Actor::getSkin() // only work 1.21.92 -100
 {
 	auto playerList = getLevel()->getPlayerList();
 	if (!playerList) return nullptr;
 	for (const auto& [UUID, Entry] : *playerList)
 	{
+		auto cmp = getActorUniqueIDComponent();
+		if (!cmp) {
+			return nullptr;
+		}
 		if (Entry.mId == getActorUniqueIDComponent()->mUniqueID)
 		{
 			auto Skin = &Entry.mSkin;

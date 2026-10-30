@@ -24,17 +24,15 @@ MinecraftGame* MinecraftGame::getInstance(){
 }
 
 ClientInstance* MinecraftGame::getPrimaryClientInstance()
-{ //fuckyou clang
-    auto* b = (uint8_t*)this;
-    void* he = *(void** )(b + OffsetProvider::MinecraftGame_mClientInstances);
-    size_t size = *(size_t * )(b + OffsetProvider::MinecraftGame_mClientInstances+8);
-    if (he == nullptr || size == 0)
-        return nullptr;
-    auto* n = *(uint8_t * *)he;
-    if (*(char*)(n + 0x19) != 0)
-        return nullptr;
+{ 
+    using getprimclient = void (*)(void*, void* );
 
-    return *reinterpret_cast<ClientInstance**>(n + 0x30);
+    auto* v = *(void***)((uint8_t*)this + 0x30);
+    uint8_t out[24]{};
+    reinterpret_cast<getprimclient>(v[7])((uint8_t*)this + 0x30, out);
+
+    auto* ci = *reinterpret_cast<ClientInstance**>(out + 0x10);
+    return ci;
     /* i think it was fucked by clang :ultra_retard:
     auto helpme = hat::member_at<std::map<unsigned char, std::shared_ptr<class ClientInstance>>, MinecraftGame>(this, OffsetProvider::MinecraftGame_mClientInstances);
 
@@ -61,8 +59,16 @@ void MinecraftGame::setMouseGrabbed(bool grabbed)
     hat::member_at<bool>(this, OffsetProvider::MinecraftGame_mMouseGrabbed) = grabbed;
 }
 std::string MinecraftGame::getxuid()
-{
-    return *hat::member_at<std::string*>(this, OffsetProvider::MinecraftGame_mXuid);
+{ // why c :retard:
+    auto* c = hat::member_at<const char*>(this, OffsetProvider::MinecraftGame_mXuid);
+    if (!c) {
+        return {};
+    }
+    auto n = strnlen(c, 64);
+    if (n == 0 || n == 64) {
+        return {};
+    }
+    return std::string(c, n);
 }
 
 void MinecraftGame::playUi(const std::string& soundName, float volume, float pitch)

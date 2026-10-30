@@ -14,12 +14,12 @@
 #include <SDK/Minecraft/Inventory/PlayerInventory.hpp>
 
 std::vector<unsigned char> gNoSwitchAnimation = {
-    0x0F, 0x57, 0xC9, // xorps xmm1, xmm1
+    0x0F, 0x57, 0xC0, // xorps xmm0, xmm0
     0x90, 0x90, 0x90, 0x90, 0x90 // nop
 };
 
 std::vector<unsigned char> gFluxSwing = {
-    0xEB, 0x1A, 0x90, 0x90, 0x90
+    0xEB, 0x03, 0x90, 0x90, 0x90
 };
 
 DEFINE_PATCH_FUNC(patchNoSwitchAnimation, SigManager::ItemInHandRenderer_render_bytepatch, gNoSwitchAnimation);

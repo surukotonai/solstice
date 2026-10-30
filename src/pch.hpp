@@ -59,6 +59,7 @@ enum struct EventPriorities {
 #include <imgui_freetype.h>
 
 #include "SDK/EnttHashs.hpp" //for fucking  entt
+#include "SDK/heap_rd.hpp" // for mimalloc
 
 // Luau
 

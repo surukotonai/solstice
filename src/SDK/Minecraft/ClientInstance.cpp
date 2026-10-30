@@ -1,8 +1,11 @@
 //
 // Created by vastrakai on 6/24/2024.
 //
+#define HR
 
 #include "ClientInstance.hpp"
+
+#include <SDK/heap_rd_impl.hpp>
 
 #include <libhat/Access.hpp>
 #include <SDK/OffsetProvider.hpp>
@@ -120,9 +123,15 @@ std::string ClientInstance::getPlatformOnlineId()
 
 std::string ClientInstance::getScreenName()
 {
+	std::string buf{};
+	MemUtils::callVirtualFunc<std::string*>(OffsetProvider::ClientInstance_getScreenName, this, &buf);
+	return buf;
+
+	/* //fucking abi issue :joy: // im idiot :sob:
 	std::string screen = "no_screen";
 	MemUtils::callVirtualFunc<std::string*>(OffsetProvider::ClientInstance_getScreenName, this, &screen);
-	return screen;
+	spdlog::info("size={} cap={} ptr={}", screen.size(), screen.capacity(), screen.data());
+	return screen;*/
 	/* //shit methot
 	std::string screen = "no_screen";
 	//sig is better

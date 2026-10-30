@@ -203,6 +203,7 @@ public:
 	uint64_t mActorId{};
 	ActionType mActionType{};
 	int32_t mSlot{};
+	unsigned char mHand{};
 	NetworkItemStackDescriptor mItemInHand{};
 	glm::vec3 mPlayerPos{};
 	glm::vec3 mClickPos{};
@@ -244,7 +245,7 @@ public:
 
 static_assert(sizeof(ComplexInventoryTransaction) == 104);
 static_assert(sizeof(ItemUseInventoryTransaction) == 272);
-static_assert(sizeof(ItemUseOnActorInventoryTransaction) == 240);
+static_assert(sizeof(ItemUseOnActorInventoryTransaction) == 248);
 static_assert(sizeof(ItemReleaseInventoryTransaction) == 224);
 
 

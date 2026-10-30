@@ -16,6 +16,8 @@ public:
     static std::unique_ptr<Detour> GetLastPingDetour;
     static std::unique_ptr<Detour> SendImmediateDetour;
 
+    inline static bool israknetalive = false;
+
     static float LastPing;
 
     static bool runUpdateCycle(void* _this, void* a2);

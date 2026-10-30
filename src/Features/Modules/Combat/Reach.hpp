@@ -22,7 +22,7 @@ public:
         };
     }
 
-    static inline unsigned char mOriginalData[20];
+    static inline unsigned char mOriginalData[18];
 
 
     float* mBlockReachPtr = nullptr;

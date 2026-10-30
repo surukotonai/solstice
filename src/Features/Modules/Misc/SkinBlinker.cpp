@@ -24,9 +24,10 @@ void SkinBlinker::onEnable()
         return;
     }
     auto currentSkin = player->getSkin();
-    mId = currentSkin->mId;
-    mPlayFabId = currentSkin->mPlayFabId;
-    mFullId = currentSkin->mFullId;
+    if (currentSkin) {
+        mId = currentSkin->mId;
+        mFullId = currentSkin->mFullId;
+    }
 }
 
 void SkinBlinker::onDisable()
@@ -183,14 +184,12 @@ void SkinBlinker::onBaseTickEvent(BaseTickEvent& event)
 
     auto currentSkin = player->getSkin();
     mId = currentSkin->mId;
-    mPlayFabId = currentSkin->mPlayFabId;
     mFullId = currentSkin->mFullId;
 
     auto skinpacket = MinecraftPackets::createPacket<PlayerSkinPacket>();
     auto skin = &skinpacket->mSkin.impl->Object;
 
     skin->mId = mId;
-    skin->mPlayFabId = mPlayFabId;
     skin->mFullId = mFullId;
 
     if (skinCapePair->slimSkin)

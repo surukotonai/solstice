@@ -24,6 +24,7 @@ void* peer = nullptr;
 
 bool RakPeerHooks::runUpdateCycle(void* _this, void* a2)
 {
+    israknetalive = true;
     if (!peer)
     {
         peer = _this;

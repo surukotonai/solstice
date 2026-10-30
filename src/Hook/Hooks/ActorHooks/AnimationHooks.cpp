@@ -43,10 +43,10 @@ void* AnimationHooks::doBobHurt(void* _this, glm::mat4* matrix)
 
 void AnimationHooks::init()
 {
-    uintptr_t func = SigManager::Mob_getCurrentSwingDuration;
-    mSwingDetour = std::make_unique<Detour>("Mob::getCurrentSwingDuration", reinterpret_cast<void*>(func), &getCurrentSwingDuration);
+    //uintptr_t func = SigManager::Mob_getCurrentSwingDuration;
+    //mSwingDetour = std::make_unique<Detour>("Mob::getCurrentSwingDuration", reinterpret_cast<void*>(func), &getCurrentSwingDuration);
 
     // TODO: Replace this with a better method of doing matrix translation
-    func = SigManager::BobHurt;
+    uintptr_t func = SigManager::BobHurt;
     mBobHurtDetour = std::make_unique<Detour>("bobHurt", reinterpret_cast<void*>(func), &doBobHurt);
 }

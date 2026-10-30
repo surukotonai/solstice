@@ -50,6 +50,7 @@ ENTT_HASH__(HorizontalCollisionFlagComponent, 0xD5EE0BD8u);
 ENTT_HASH__(IsDeadFlagComponent, 0x710A62C4u);
 ENTT_HASH__(NameableComponent, 0x97D981A9u);
 ENTT_HASH__(RawMoveInputComponent, 0x3613E513u);
+ENTT_HASH__(MoveRequestComponent, 0x4C8F7288u);
 
 
 

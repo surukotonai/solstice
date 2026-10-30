@@ -12,7 +12,7 @@ class PlayerListEntry {
 public:
 	uint64_t mId; // This is the ActorUniqueID
 	mce::UUID mUuid;
-	std::string mName, mXUID, mPlatformOnlineId;
+	std::string mName, mXUID, mPlayFabId, mPlatformOnlineId;
 	BuildPlatform mBuildPlatform;
 	SerializedSkin mSkin;
 	glm::vec4 mColor;
@@ -25,6 +25,7 @@ public:
 		mUuid = mce::UUID();
 		mName = "";
 		mXUID = "";
+		mPlayFabId = "";
 		mPlatformOnlineId = "";
 		mBuildPlatform = BuildPlatform::Unknown;
 	}

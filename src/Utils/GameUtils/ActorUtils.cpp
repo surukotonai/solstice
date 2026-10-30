@@ -9,6 +9,8 @@
 #include <SDK/Minecraft/Actor/Actor.hpp>
 #include <entity/registry.hpp>
 
+#include <SDK/heap_rd.hpp>
+
 #include "ActorUtils.hpp"
 
 #include <Features/FeatureManager.hpp>
@@ -148,6 +150,7 @@ std::shared_ptr<InventoryTransactionPacket> ActorUtils::createAttackTransaction(
 
     auto cit = std::make_unique<ItemUseOnActorInventoryTransaction>();
     cit->mSlot = slot;
+    cit->mHand = 0;
     cit->mItemInHand = NetworkItemStackDescriptor(*player->getSupplies()->getContainer()->getItem(slot));
     auto unique = actor->getActorUniqueIDComponent();
     cit->mActorId = unique ? unique->mUniqueID : -1;

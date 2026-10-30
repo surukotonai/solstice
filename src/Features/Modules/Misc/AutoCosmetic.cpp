@@ -63,7 +63,6 @@ void AutoCosmetic::closeForm()
 void AutoCosmetic::onBaseTickEvent(BaseTickEvent& event)
 {
     auto player = event.mActor;
-
     int lockerItem = -1;
     for (int i = 0; i < 9; i++) {
         auto item = player->getSupplies()->getContainer()->getItem(i);
@@ -73,7 +72,7 @@ void AutoCosmetic::onBaseTickEvent(BaseTickEvent& event)
             break;
         }
     }
-
+    return;
     if (lockerItem == -1)
     {
         if (!mFinishedApplying)
@@ -156,6 +155,7 @@ void AutoCosmetic::onBaseTickEvent(BaseTickEvent& event)
 
 void AutoCosmetic::onPacketInEvent(PacketInEvent& event)
 {
+    return;
     auto player = ClientInstance::get()->getLocalPlayer();
     if (!player) return;
 
@@ -231,6 +231,7 @@ void AutoCosmetic::onPacketInEvent(PacketInEvent& event)
 
 void AutoCosmetic::onPacketOutEvent(PacketOutEvent& event)
 {
+    return;
     if (event.mPacket->getId() == PacketID::ModalFormResponse) {
         auto packet = event.getPacket<ModalFormResponsePacket>();
         mLastFormTime = NOW;

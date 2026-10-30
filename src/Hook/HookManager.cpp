@@ -18,6 +18,7 @@
 #include "Hooks/NetworkHooks/PacketReceiveHook.hpp"
 #include "Hooks/NetworkHooks/PacketSendHook.hpp"
 #include "Hooks/NetworkHooks/RakPeerHooks.hpp"
+#include "Hooks/NetworkHooks/NetherNetHooks.hpp"
 #include "Hooks/RenderHooks/ActorRenderDispatcherHook.hpp"
 #include "Hooks/RenderHooks/D3DHook.hpp"
 #include "Hooks/RenderHooks/HoverTextRendererHook.hpp"
@@ -57,6 +58,7 @@ void HookManager::init(bool initLp)
 		ADD_HOOK(PacketReceiveHook);
 		ADD_HOOK(PacketSendHook);
 		ADD_HOOK(RakPeerHooks);
+		//ADD_HOOK(NetherNetHooks); //fucking test
 		//ADD_HOOK(ActorRenderDispatcherHook); //die
 		ADD_HOOK(AnimationHooks);
 		ADD_HOOK(HoverTextRendererHook);
@@ -72,7 +74,7 @@ void HookManager::init(bool initLp)
 		ADD_HOOK(GrabMouseHook);
 		ADD_HOOK(LevelRendererHook);
 
-
+		
 
 		for (auto& hook : hooks)
 		{

@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <SDK/heap_rd.hpp>
+
 #include <regex>
 #include <SDK/OffsetProvider.hpp>
 #include <SDK/SigManager.hpp>
@@ -90,7 +92,22 @@ public:
         static auto func = SigManager::ItemStack_getCustomName;
         std::string str;
         MemUtils::callFastcall<std::string*, ItemStack*, std::string*>(func, this, &str);
-        return str;
+        std::string out(str.c_str(), str.size());
+        void* r = (void*)&str;
+        size_t cap = hat::member_at<size_t>(r, 0x10);
+        size_t size = hat::member_at<size_t>(r, 0x16);
+        if (cap > 15 && r) {
+            if (mr::ensure()) {
+                mr::freep(r);
+            }
+            else {
+                HeapFree(GetProcessHeap(), 0, r);
+            }
+            r = nullptr;
+        }
+        hat::member_at<size_t>(r, 0x10) = 0;
+        hat::member_at<size_t>(r, 0x16) = 15;
+        return out;
     }
 
     std::map<int, int> gatherEnchants()

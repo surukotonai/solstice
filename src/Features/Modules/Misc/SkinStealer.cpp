@@ -150,7 +150,6 @@ void SkinStealer::applySkin(Actor* actor, const std::vector<uint8_t>& skinData, 
     auto skinPacket = MinecraftPackets::createPacket<PlayerSkinPacket>();
     auto skin = &skinPacket->mSkin.impl->Object;
     skin->mId = currentSkin->mId;
-    skin->mPlayFabId = currentSkin->mPlayFabId;
     skin->mFullId = currentSkin->mFullId;
 
     std::string defaultGeometry;

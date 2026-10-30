@@ -133,14 +133,13 @@ public:
     unsigned int ThreadCheckIndex{};
 };
 // CYKA BLYAT IDA NAHUI
-class skinptr {
+class SerializedSkinImpl {
 public:
-    CLASS_FIELD(int32_t, skinWidth, 0xA4);
-    CLASS_FIELD(int32_t, skinHeight, 0xA8);
-    CLASS_FIELD(const uint8_t*, skinData, 0xC0); // skinImage + Blob = 0xB8 + 0x8 pointer = 0xC0
+    CLASS_FIELD(int32_t, skinWidth, 0x84);
+    CLASS_FIELD(int32_t, skinHeight, 0x88);
+    CLASS_FIELD(const uint8_t*, skinData, 0xA0); // skinImage + Blob = 0xB8 + 0x8 pointer = 0xC0
 public:
     std::string                                          mId;                             // this+0x0
-    std::string                                          mPlayFabId;                      // this+0x20
     std::string                                          mFullId;                         // this+0x40
     std::string                                          mResourcePatch;                  // this+0x60
     std::string                                          mDefaultGeometryName;            // this+0x80
@@ -166,7 +165,7 @@ public:
 class SerializedSkin
 {
 public:
-    ThreadOwner<skinptr>* impl;
+    std::shared_ptr<ThreadOwner<SerializedSkinImpl>> impl;
 
     void operator= (const SerializedSkin& other) {
         // use memcpy to copy the data

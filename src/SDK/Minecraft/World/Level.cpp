@@ -4,6 +4,8 @@
 
 #include "Level.hpp"
 
+#include <SDK/heap_rd.hpp>
+
 #include <libhat.hpp>
 #include <SDK/OffsetProvider.hpp>
 #include <SDK/Minecraft/Actor/SyncedPlayerMovementSettings.hpp>
