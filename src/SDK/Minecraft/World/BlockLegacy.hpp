@@ -23,12 +23,12 @@ public:
     CLASS_FIELD(bool, mIsSolid, 0xE);
     CLASS_FIELD(bool, mIsSuperHot, 0xF);*/
     unsigned char mType;
-    bool mIsNeverBuildable;
-    bool mIsLiquid;
-    bool mIsBlockingMotion;
-    bool mIsBlockingPrecipitation;
-    bool mIsSolid;
-    bool mIsSuperHot;
+    bool mIsNeverBuildable : 1;
+    bool mIsLiquid : 1;
+    bool mIsBlockingMotion : 1;
+    bool mIsBlockingPrecipitation : 1;
+    bool mIsSolid : 1;
+    bool mIsSuperHot : 1;
 
     bool isTopSolid(bool includeWater, bool includeLeaves)
     {
